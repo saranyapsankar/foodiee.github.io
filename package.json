@@ -6,7 +6,7 @@
     "start": "parcel index.html",
     "test": "jest",
     "predeploy": "npm run build",
-    "build": "parcel build index.html --dist-dir dist",
+    "build": "parcel build index.html --dist-dir dist --public-url /foodiee.github.io/",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
