@@ -11,7 +11,7 @@ import UserContext from "./assets/UserContext";
 import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./assets/appStore";
-import './index.css';
+import '../index.css'
 const AppLayout = () => {
   const [userInfo, setUserInfo] = useState("");
   useEffect(() => {
