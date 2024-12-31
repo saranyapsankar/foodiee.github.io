@@ -8,10 +8,10 @@ import ContactUs from "./components/ContactUs";
 import Cart from "./components/Cart";
 import Error from "./components/Error";
 import UserContext from "./assets/UserContext";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./assets/appStore";
-
+import './index.css';
 const AppLayout = () => {
   const [userInfo, setUserInfo] = useState("");
   useEffect(() => {
@@ -37,7 +37,7 @@ const RestaurentDetails = lazy(() =>
   import("./components/res-details/RestaurentDetails")
 );
 
-const appRouter = createBrowserRouter([
+const appRouter = createHashRouter([
   {
     path: "/",
     element: <AppLayout />,
