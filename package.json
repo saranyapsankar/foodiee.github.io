@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/saranyapsankar/foodiee.github.io/issues"
   },
-  "homepage": "https://github.com/saranyapsankar/foodiee.github.io",
+  "homepage": "https://saranyapsankar.github.io/foodiee.github.io",
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
