@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,31 +7,24 @@ import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Cart from "./components/Cart";
 import Error from "./components/Error";
-import UserContext from "./assets/UserContext";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./assets/appStore";
 import '../index.css'
+
 const AppLayout = () => {
-  const [userInfo, setUserInfo] = useState("");
-  useEffect(() => {
-    const data = {
-      loggedInUser: "Saranya",
-    };
-    setUserInfo(data?.loggedInUser);
-  }, []);
   return (
-    <Provider store={appStore}>
-      <UserContext.Provider value={{ loggedInUser: userInfo, setUserInfo }}>
-        <div className="app-container">
-          <Header/>
-          <Outlet/>
-          <Footer/>
-        </div>
-      </UserContext.Provider>
-    </Provider>
+    <div className="app-container">
+      <Header/>
+      <Outlet/>
+      <Footer/>
+    </div>
   );
 };
+
 //dynamic import - to lazy load
 const RestaurentDetails = lazy(() =>
   import("./components/res-details/RestaurentDetails")
@@ -56,7 +49,11 @@ const appRouter = createHashRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/restaurent/:resId",
@@ -69,7 +66,19 @@ const appRouter = createHashRouter([
     ],
     errorElement: <Error />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <Provider store={appStore}>
+    <RouterProvider router={appRouter} />
+  </Provider>
+);
