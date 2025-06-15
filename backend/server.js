@@ -9,7 +9,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://saranyapsankar.github.io', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB Connection with options
@@ -17,14 +20,17 @@ const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000,
-  socketTimeoutMS: 45000,
-  connectTimeoutMS: 30000,
-  retryWrites: true,
-  w: 'majority'
+  ssl: true,
+  retryWrites: true
 };
 
-// MongoDB URI - Replace with your actual MongoDB URI
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://your_username:your_password@cluster0.mongodb.net/foodiee?retryWrites=true&w=majority';
+// MongoDB URI - Use environment variable from Vercel
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error('MONGODB_URI is not defined in environment variables');
+  process.exit(1);
+}
 
 // Connect to MongoDB with retry logic
 const connectWithRetry = async () => {
