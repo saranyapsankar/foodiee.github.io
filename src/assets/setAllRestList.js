@@ -1,5 +1,5 @@
-import { useState,useEffect } from "react";
-import { API_ENDPOINT, RES_ENDPOINT } from "../assets/constant";
+import { useState, useEffect, useCallback} from "react";
+import { API_ENDPOINT } from "../assets/constant";
 import * as tempRes from '../assets/tempData.json'
 
 const setAllRestList = ()=> {
@@ -11,28 +11,38 @@ const setAllRestList = ()=> {
         fetchData();
     }, [])
 
-    const fetchData = async ()=>{
-        const data = await fetch(API_ENDPOINT);
-        const restData = await data?.json();
-        
-        if(!data) restData = tempRes.result;
+    loadInitialData = (restData) => {
         setCuisinesList(
-         restData?.data?.cards?.[0]?.card?.card?.imageGridCards?.info ||
-         tempRes.result ?.data?.cards?.[0]?.card?.card?.imageGridCards?.info
+            restData?.data?.cards?.[0]?.card?.card?.imageGridCards?.info ||
+     tempRes.result ?.data?.cards?.[0]?.card?.card?.imageGridCards?.info
         );
         setRestaurantsList(
-         restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || 
-         tempRes.result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+            restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
+            tempRes.result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
         setFilteredDelResList(
-         restData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
-         tempRes.result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants 
+            restData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
+            tempRes.result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
         setDeliverableResList(
-         restData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
-         tempRes.result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+            restData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
+            tempRes.result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
     }
+
+    const fetchData = useCallback(async () => {
+        try {
+            const response = await fetch(API_ENDPOINT);
+            if (!response.ok) throw new Error("Failed to fetch data");
+
+            const restData = await response.json();
+            loadInitialData(restData)
+        } catch (error) {
+            console.error("Error fetching data from proxy server", error);
+            loadInitialData()
+        }
+    }, []);
+
     return { deliverableResList, restaurantsList, filteredDelResList, cuisinesList, setFilteredDelResList};
 }
 
