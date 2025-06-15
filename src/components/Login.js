@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../assets/userSlice';
 import { login } from '../assets/api';
@@ -10,7 +10,11 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
+
+  // Get the redirect path from location state or default to home
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +24,10 @@ const Login = () => {
     try {
       const data = await login(email, password);
       dispatch(setUser(data.user));
-      navigate('/');
+      console.log('Login successful, redirecting to:', from);
+      navigate(from, { replace: true });
     } catch (err) {
+      console.error('Login error:', err);
       setError(err.message || 'Invalid credentials');
     } finally {
       setIsLoading(false);

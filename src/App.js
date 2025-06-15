@@ -37,15 +37,27 @@ const appRouter = createHashRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: (
+          <ProtectedRoute>
+            <Body />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <ProtectedRoute>
+            <About />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/contact",
-        element: <ContactUs />,
+        element: (
+          <ProtectedRoute>
+            <ContactUs />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/cart",
@@ -58,9 +70,11 @@ const appRouter = createHashRouter([
       {
         path: "/restaurent/:resId",
         element: (
-          <Suspense fallback="{<h3>Loading...<h3>}">
-            <RestaurentDetails />
-          </Suspense>
+          <ProtectedRoute>
+            <Suspense fallback="{<h3>Loading...<h3>}">
+              <RestaurentDetails />
+            </Suspense>
+          </ProtectedRoute>
         ),
       },
     ],
