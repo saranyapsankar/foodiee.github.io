@@ -25,7 +25,6 @@ const AppLayout = () => {
   );
 };
 
-//dynamic import - to lazy load
 const RestaurentDetails = lazy(() =>
   import("./components/res-details/RestaurentDetails")
 );

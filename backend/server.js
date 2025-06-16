@@ -62,14 +62,14 @@ app.use('/api/auth', authRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Foodiee API' });
+  res.json({ message: `Welcome to Foodiee API ${req}`});
 });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
-    message: 'Something went wrong!',
+    message: `Something went wrong!, ${req.credentials}`,
     error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
   });
 });
