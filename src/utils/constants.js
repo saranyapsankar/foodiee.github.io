@@ -1,5 +1,3 @@
-const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://foodiee-github-io.vercel.app/api'
-  : 'http://localhost:5000/api';
 
+const API_URL =  'https://resto-node.vercel.app/api';
 export { API_URL }; 
