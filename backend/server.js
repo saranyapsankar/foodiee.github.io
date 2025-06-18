@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://saranyapsankar.github.io', 'http://localhost:3000'],
+  origin: ['https://saranyapsankar.github.io', 'http://localhost:3000', 'http://localhost:1234'],
   credentials: true
 }));
 app.use(express.json());
