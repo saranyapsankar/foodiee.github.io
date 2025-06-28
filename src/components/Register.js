@@ -23,6 +23,7 @@ const Register = () => {
       dispatch(setUser(data.user));
       navigate('/');
     } catch (err) {
+      console.error('Register error:', err);
       setError(err.message || 'Registration failed');
     } finally {
       setIsLoading(false);

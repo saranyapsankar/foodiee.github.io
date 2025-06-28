@@ -11,7 +11,7 @@ const setAllRestList = ()=> {
         fetchData();
     }, [])
 
-    loadInitialData = (restData) => {
+    const loadInitialData = (restData) => {
         setCuisinesList(
             restData?.data?.cards?.[0]?.card?.card?.imageGridCards?.info ||
      tempRes.result ?.data?.cards?.[0]?.card?.card?.imageGridCards?.info
