@@ -1,5 +1,5 @@
 import { STAR_IMG_URL, DEL_ICON_URL} from "../../assets/constant";
-import "../../assets/resto.css";
+import "../../assets/resto.scss";
 
 const ResSummary = (props) => {
   const {

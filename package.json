@@ -21,6 +21,7 @@
   },
   "homepage": "https://saranyapsankar.github.io/foodiee.github.io",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.13.3",
     "@testing-library/react": "^16.0.0",
     "babel-jest": "^29.7.0",
     "gh-pages": "^6.2.0",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
+    "antd": "^5.26.2",
     "autoprefixer": "^10.4.20",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

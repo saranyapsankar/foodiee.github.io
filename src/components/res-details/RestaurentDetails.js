@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ResSummary from './ResSummary';
 import ResDeals from './ResDeals';
 import ResMenuContent from './ResMenuContent'
-import "../../assets/resto.css";
+import "../../assets/resto.scss";
 import setRestDetails from '../../assets/setRestDetails'
 import {useState} from 'react';
 

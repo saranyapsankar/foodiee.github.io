@@ -9,4 +9,5 @@ export const REST_URL = 'https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_M
 export const DEL_ICON_URL ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2EHmHMeG8MHegDzP0xva9oNG4cdIHKVNuAA&s';
 export const CARET_DOWN = 'https://cdn-icons-png.flaticon.com/512/137/137621.png';
 export const CARET_UP = 'https://cdn-icons-png.flaticon.com/512/137/137621.png';
+export const WALLPAPER = ''
 //export default { LOGO_URL, COPY_RIGHT_LOGO_URL, STAR_IMG_URL, CDN_URL }; 
